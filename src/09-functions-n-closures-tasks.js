@@ -1,6 +1,6 @@
 /* *********************************************************************************************
  *                                                                                             *
- * Plese read the following tutorial before implementing tasks:                                *
+ * Please read the following tutorial before implementing tasks:                                *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions                     *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function   *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments       *
@@ -44,8 +44,9 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  return function power(x) { return x ** exponent; };
+  // throw new Error('Not implemented');
 }
 
 
@@ -161,7 +162,7 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *
  * @example
  *   const getId4 = getIdGenerator(4);
- *   const getId10 = gerIdGenerator(10);
+ *   const getId10 = getIdGenerator(10);
  *   getId4() => 4
  *   getId10() => 10
  *   getId4() => 5
