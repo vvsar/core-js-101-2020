@@ -1,6 +1,6 @@
 /* ************************************************************************************************
  *                                                                                                *
- * Plese read the following tutorial before implementing tasks:                                   *
+ * Please read the following tutorial before implementing tasks:                                   *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object        *
  *                                                                                                *
@@ -8,7 +8,7 @@
 
 
 /**
- * Returns the rectagle object with width and height parameters and getArea() method
+ * Returns the rectangle object with width and height parameters and getArea() method
  *
  * @param {number} width
  * @param {number} height
@@ -21,6 +21,9 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(/* width, height */) {
+  // function getArea(a, b) { return a * b; }
+  // const s = getArea(width, height);
+  // return { width, height, getArea(width, height) };
   throw new Error('Not implemented');
 }
 
