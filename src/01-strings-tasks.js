@@ -297,7 +297,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if (typeof value === 'string') { return true; }
+  if (typeof value === 'string' || value instanceof String === true) { return true; }
   return false;
 }
 
@@ -329,20 +329,23 @@ function isString(value) {
 function getCardId(value) {
   let num = 0;
   let a = 0;
+  let b = 0;
+  let n = 0;
+  let m = 0;
   if (value.length === 3) {
-    a = value.slice(0, 2);
+    n = value.slice(0, 2);
   } else {
-    a = value.slice(0, 1);
+    n = value.slice(0, 1);
   }
-  if (a === 'A') { a = 1; }
-  if (a === 'J') { a = 11; }
-  if (a === 'Q') { a = 12; }
-  if (a === 'K') { a = 13; }
-  let b = value.slice(-1, 0);
-  if (b === String.fromCharCode(0x2663)) { b = 0; }
-  if (b === String.fromCharCode(0x2666)) { b = 13; }
-  if (b === String.fromCharCode(0x2665)) { b = 26; }
-  if (b === String.fromCharCode(0x2660)) { b = 39; }
+  if (n === 'A') { a = 1; }
+  if (n === 'J') { a = 11; }
+  if (n === 'Q') { a = 12; }
+  if (n === 'K') { a = 13; } else { a = +n; }
+  m = value.slice(-1).charCodeAt(0);
+  if (m === 0x2663) { b = 0; }
+  if (m === 0x2666) { b = 13; }
+  if (m === 0x2665) { b = 26; }
+  if (m === 0x2660) { b = 39; }
   num = a + b - 1;
   return num;
 }
