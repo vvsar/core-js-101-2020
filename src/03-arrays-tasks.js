@@ -35,11 +35,10 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  // const arr = new Array(len);
-  // function fn(i) { return 1 + 2 * i; }
-  // return arr.map((item, index) => item.fn(index));
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = new Array(len).fill(1);
+  return arr.map((item, index) => item + index * 2);
+  // throw new Error('Not implemented');
 }
 
 
@@ -103,8 +102,9 @@ function getArrayOfStrings(arr) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  return arr.filter((item) => !!item === true);
+  // throw new Error('Not implemented');
 }
 
 /**
@@ -207,8 +207,10 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  const arr1 = arr.map((item) => item.toString(',').trim());
+  return arr1.toString(',');
+  // throw new Error('Not implemented');
 }
 
 /**
@@ -243,10 +245,8 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(/* arr */) {
-  // return arr.map((index) => fn(index));
-  // function fn(x) {
-
-  // }
+  // let sum = 0;
+  // return arr.map((item, sum) => sum + item);
   throw new Error('Not implemented');
 }
 
@@ -453,6 +453,7 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(/* n */) {
+  // arr map()
   throw new Error('Not implemented');
 }
 
