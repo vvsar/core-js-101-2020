@@ -52,7 +52,10 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  const arr = [];
+  arr.push(value1, value2);
+  arr.sort((a, b) => b - a);
+  return arr[0] - (arr[0] - arr[1]) / 2;
 }
 
 /**
@@ -201,8 +204,14 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(num) {
+  // throw new Error('Not implemented');
+  if (num <= 1) { return false; }
+  if (num === 2 || num === 3) { return true; }
+  for (let i = 2; i <= Math.ceil(Math.sqrt(num)); i += 1) {
+    if (num % i === 0) { return false; }
+  }
+  return true;
 }
 
 /**
@@ -220,8 +229,16 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  // throw new Error('Not implemented');
+  if (typeof value === 'number') {
+    return value;
+  }
+  // const value1 = +value;
+  if (typeof +value === 'number' && !Number.isNaN(value)) {
+    return +value;
+  }
+  return def;
 }
 
 module.exports = {

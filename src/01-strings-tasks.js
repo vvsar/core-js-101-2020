@@ -263,24 +263,23 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
   const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  const abcArr = abc.split('');
-  let j;
-  let repl = '';
+  // const abcArr = abc.split('');
   function fn(letter) {
-    for (j = 0; j < 52; j += 1) {
-      if (letter === abcArr[j]) {
-        if (j < 13 || (j > 25 && j < 39)) {
-          repl = abcArr[j + 13];
-          break;
-        } else {
-          repl = abcArr[j - 13];
-          break;
-        }
-      }
+    if (abc.indexOf(letter) < 0) {
+      return letter;
     }
-    return repl;
+    const j = abc.indexOf(letter);
+    if (j < 13 || (j > 25 && j < 39)) {
+      return abc[j + 13];
+    }
+    return abc[j - 13];
   }
-  return str.replace(/\w/g, `${fn(/\w/)}`);
+  // return str.replace(/\w/g, `${fn(/\w/)}`);
+  const arr = str.split('');
+  for (let i = 0; i < arr.length; i += 1) {
+    arr[i] = fn(arr[i]);
+  }
+  return arr.join('');
 }
 
 /**
@@ -327,27 +326,37 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  let num = 0;
-  let a = 0;
-  let b = 0;
-  let n = 0;
-  let m = 0;
+  let a;
+  let b;
+  let n = value[0];
   if (value.length === 3) {
     n = value.slice(0, 2);
-  } else {
-    n = value.slice(0, 1);
   }
-  if (n === 'A') { a = 1; }
-  if (n === 'J') { a = 11; }
-  if (n === 'Q') { a = 12; }
-  if (n === 'K') { a = 13; } else { a = +n; }
-  m = value.slice(-1).charCodeAt(0);
-  if (m === 0x2663) { b = 0; }
-  if (m === 0x2666) { b = 13; }
-  if (m === 0x2665) { b = 26; }
-  if (m === 0x2660) { b = 39; }
-  num = a + b - 1;
-  return num;
+  if (n === 'A') {
+    a = 0;
+  } else if (n === 'J') {
+    a = 10;
+  } else if (n === 'Q') {
+    a = 11;
+  } else if (n === 'K') {
+    a = 12;
+  } else {
+    a = +n - 1;
+  }
+  // m = value.charCodeAt(value.length - 1).toString(16);
+  let m = value.slice(1);
+  if (value.length === 3) {
+    m = value.slice(2);
+  }
+  // if (m === '0x2663') { b = 0; }
+  // if (m === '0x2666') { b = 13; }
+  // if (m === '0x2665') { b = 26; }
+  // if (m === '0x2660') { b = 39; }
+  if (m === '♣') { b = 0; }
+  if (m === '♦') { b = 13; }
+  if (m === '♥') { b = 26; }
+  if (m === '♠') { b = 39; }
+  return a + b;
 }
 
 
